@@ -1,0 +1,6 @@
+---
+- name: uci commit wireless
+  uci: command=commit config=wireless
+
+- name: reload network
+  raw: /etc/init.d/network reload

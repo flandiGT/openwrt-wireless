@@ -1,0 +1,12 @@
+---
+- name: set wifi-devices
+  uci: command=set_object config="wireless" type="wifi-device" option="name" value={{ wifi_devices }}
+  when: wifi_devices.0 is defined
+  # with-items: wifi-devices
+  register: wifi_devices
+
+# - name: commit changes and reload network
+#   when: wifi_devices.changed
+#   notify:
+#     - uci commit wireless
+#     - reload network
