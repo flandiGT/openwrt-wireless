@@ -40,15 +40,17 @@ Example Playbook
     htmode: HT20,
     enabled: false
   }]
+
+- role: openwrt-wireless
   wifi_ifaces: [{
-    mode: ap
-    ssid: OpenWrt
-    encryption: none
+    mode: ap,
+    ssid: OpenWrt,
+    encryption: none,
     device: radio0
   }, {
-    mode: ap
-    ssid: OpenWrt
-    encryption: none
+    mode: ap,
+    ssid: OpenWrt,
+    encryption: none,
     device: radio1
   }]
 ```
