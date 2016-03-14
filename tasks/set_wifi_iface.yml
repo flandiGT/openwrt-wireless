@@ -1,0 +1,60 @@
+---
+- name: set wifi-iface device
+  uci:
+    command: set_list_object_value
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "device"
+    value: "{{device}}"
+  when: device != {}
+
+- name: set wifi-iface network
+  uci:
+    command: set_list_object_value
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "network"
+    value: "{{network}}"
+  when: network != {}
+
+- name: set wifi-iface mode
+  uci:
+    command: set_list_object_value
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "mode"
+    value: "{{mode}}"
+  when: mode != {}
+
+- name: set wifi-iface ssid
+  uci:
+    command: set_list_object_value
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "ssid"
+    value: "{{ssid}}"
+  when: ssid != {}
+
+- name: set wifi-iface encryption
+  uci:
+    command: set_list_object_value
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "encryption"
+    value: "{{encryption}}"
+  when: encryption != {}
+
+- name: set wifi-iface key
+  uci:
+    command: set_list_object_value
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "key"
+    value: "{{key}}"
+  when: key != {}
