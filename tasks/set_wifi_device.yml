@@ -1,0 +1,59 @@
+---
+- name: set wifi-device disabled
+  uci:
+    command: set
+    config: "wireless"
+    section: "{{name}}"
+    option: "disabled"
+    value: "{{ (not enabled) | int }}"
+
+- name: set wifi-device channel
+  uci:
+    command: set
+    config: "wireless"
+    section: "{{name}}"
+    option: "channel"
+    value: "{{channel}}"
+  when: channel != {}
+
+- name: remove wifi-device channel
+  uci:
+    command: delete
+    config: "wireless"
+    section: "{{name}}"
+    option: "channel"
+  when: channel == {}
+
+- name: set wifi-device txpower
+  uci:
+    command: set
+    config: "wireless"
+    section: "{{name}}"
+    option: "txpower"
+    value: "{{txpower}}"
+  when: txpower != {}
+
+- name: remove wifi-device txpower
+  uci:
+    command: delete
+    config: "wireless"
+    section: "{{name}}"
+    option: "txpower"
+  when: txpower == {}
+
+- name: set wifi-device country
+  uci:
+    command: set
+    config: "wireless"
+    section: "{{name}}"
+    option: "country"
+    value: "{{country}}"
+  when: country != {}
+
+- name: delete wifi-device country
+  uci:
+    command: delete
+    config: "wireless"
+    section: "{{name}}"
+    option: "country"
+  when: country == {}
