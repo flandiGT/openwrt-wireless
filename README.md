@@ -15,29 +15,43 @@ Role Variables
 Role Variable elements
 ----------------------
 
-wifi-device element:
+wifi-device attributes:
 
-| property name | property type | valid values / examples                                           |
-|---------------|---------------|-------------------------------------------------------------------|
-| name          | text          | "radio0", "radio1" (any non-empty text, used to reference device) |
-| enabled       | boolean       | true / false                                                      |
+| attribute name | property type | valid values / examples                                           |
+|----------------|---------------|-------------------------------------------------------------------|
+| name           | text          | "radio0", "radio1" (any non-empty text, used to reference device) |
+| enabled        | boolean       | true / false                                                      |
 
-wifi-iface element:
+wifi-iface attributes:
 
-| property name | property type  | valid values / examples                   |
-|---------------|----------------|-------------------------------------------|
-| mode          | option as text | * ap = Access point                       |
-|               |                | * sta = Client                            |
-|               |                | * mesh = 802.11s                          |
-|               |                | * ahdemo = Pseudo Ad-Hoc                  |
-|               |                | * monitor = Monitor                       |
-| ssid          | text           | "mySSID", "OpenWRT" (any non-empty text ) |
-| encryption    | option as text | * none = No Encryption                    |
-|               |                | * wep-open = WEP Open System              |
-|               |                | * wep-shared = WEP Shared Key             |
-|               |                | * psk = WPA-PSK                           |
-|               |                | * psk2 = WPA2-PSK                         |
-|               |                | * psk-mixed = WPA-PSK/WPA2-PSK Mixed Mode |
+| attribute name | property type       | valid values / examples                                                         |
+|----------------|---------------------|---------------------------------------------------------------------------------|
+| mode           | option as text      | * ap = Access point                                                             |
+|                |                     | * sta = Client                                                                  |
+|                |                     | * mesh = 802.11s                                                                |
+|                |                     | * ahdemo = Pseudo Ad-Hoc                                                        |
+|                |                     | * monitor = Monitor                                                             |
+| ssid           | text                | "mySSID", "OpenWRT" (any non-empty text )                                       |
+| encryption     | option as text      | * none = No Encryption                                                          |
+|                |                     | * wep-open = WEP Open System                                                    |
+|                |                     | * wep-shared = WEP Shared Key                                                   |
+|                |                     | * psk = WPA-PSK / Auto cipher                                                   |
+|                |                     | * psk+tkip = WPA-PSK / Force TKIP                                               |
+|                |                     | * psk+ccmp = WPA-PSK / Force CCMP (AES)                                         |
+|                |                     | * psk+tkip+ccmp = WPA-PSK / Force TKIP and CCMP (AES)                           |
+|                |                     | * psk2 = WPA2-PSK / Auto cipher                                                 |
+|                |                     | * psk2+tkip = WPA2-PSK / Force TKIP                                             |
+|                |                     | * psk2+ccmp = WPA2-PSK / Force CCMP (AES)                                       |
+|                |                     | * psk2+tkip+ccmp = WPA2-PSK / Force TKIP and CCMP (AES)                         |
+|                |                     | * psk-mixed = WPA-PSK/WPA2-PSK Mixed Mode                                       |
+|                |                     | * psk-mixed+tkip = WPA-PSK/WPA2-PSK Mixed Mode / Force TKIP                     |
+|                |                     | * psk-mixed+ccmp = WPA-PSK/WPA2-PSK Mixed Mode / Force CCMP (AES)               |
+|                |                     | * psk-mixed+tkip+ccmp = WPA-PSK/WPA2-PSK Mixed Mode / Force TKIP and CCMP (AES) |
+| device         | reference as text   | reference to wifi-device's name ("radio0, "radio1")                             |
+| macfilter      | option as text      | * <empty> = no macfilter active                                                 |
+|                |                     | * allow = Allow listed only                                                     |
+|                |                     | * deny = Allow all except listed                                                |
+| maclist        | list of text values | mac addresses to allow or deny / "XX:XX:XX:XX:XX:XX,XX:XX:XX:XX:XX:XX"         |
 
 Dependencies
 ------------
