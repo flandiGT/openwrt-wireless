@@ -17,10 +17,13 @@ Role Variable elements
 
 wifi-device attributes:
 
-| attribute name | property type | valid values / examples                                           |
-|----------------|---------------|-------------------------------------------------------------------|
-| name           | text          | "radio0", "radio1" (any non-empty text, used to reference device) |
-| enabled        | boolean       | true / false                                                      |
+| attribute name | property type       | valid values / examples                                                      |
+|----------------|---------------------|------------------------------------------------------------------------------|
+| name           | text                | "radio0", "radio1" (any non-empty text, used to reference device)            |
+| enabled        | boolean             | true / false                                                                 |
+| channel        | option as int       | 36, 40, 44, 48, 52, 56, 60, 64, 149, 153, 157, 161, 165                      |
+| txpower        | option as int       | 0, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17                             |
+| country        | option as text      | Use ISO/IEC 3166 alpha2 country codes (US for United States, DE for Germany) |
 
 wifi-iface attributes:
 
@@ -65,33 +68,29 @@ Example Playbook
 - role: openwrt-wireless
   wifi_devices: [{
     name: radio0,
-    type: mac80211,
-    path: "pci0000:01/0000:01:00.0",
     channel: 36,
-    hwmode: 11a,
-    htmode: VTH80,
-    enabled: false
+    txpower: 17,
+    country: DE,
+    enabled: true
   }, {
     name: radio1,
-    type: mac80211,
-    path: "platform/qca955x_wmac",
-    channel: 11,
-    hwmode: 11g,
-    htmode: HT20,
     enabled: false
   }]
 
 - role: openwrt-wireless
   wifi_ifaces: [{
+    device: radio0,
     mode: ap,
     ssid: OpenWrt,
-    encryption: none,
-    device: radio0
+    encryption: psk2+ccmp,
+    key: my_ultra_secret_key,
+    macfilter: allow,
+    maclist: "01:23:45:67:89:AB,FE:DC:BA:98:76:54"
   }, {
+    device: radio1,
     mode: ap,
     ssid: OpenWrt,
-    encryption: none,
-    device: radio1
+    encryption: none
   }]
 ```
 
