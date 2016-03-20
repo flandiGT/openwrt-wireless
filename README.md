@@ -48,7 +48,7 @@ wifi-iface attributes:
 |                |                     | * psk-mixed+ccmp = WPA-PSK/WPA2-PSK Mixed Mode / Force CCMP (AES)               |
 |                |                     | * psk-mixed+tkip+ccmp = WPA-PSK/WPA2-PSK Mixed Mode / Force TKIP and CCMP (AES) |
 | device         | reference as text   | reference to wifi-device's name ("radio0, "radio1")                             |
-| macfilter      | option as text      | * <empty> = no macfilter active                                                 |
+| macfilter      | option as text      | * disable = no macfilter active                                                 |
 |                |                     | * allow = Allow listed only                                                     |
 |                |                     | * deny = Allow all except listed                                                |
 | maclist        | list of text values | mac addresses to allow or deny / "XX:XX:XX:XX:XX:XX,XX:XX:XX:XX:XX:XX"         |

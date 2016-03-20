@@ -7,7 +7,7 @@
     - reload network
 
 - name: set wifi-ifaces
-  include: set_wifi_iface.yml index={{item.0}} device="{{item.1.device | default({})}}" network="{{item.1.network | default({})}}" mode="{{item.1.mode | default({})}}" ssid="{{item.1.ssid | default({})}}" encryption="{{item.1.encryption | default({})}}" key="{{item.1.key | default({})}}"
+  include: set_wifi_iface.yml index={{item.0}} device="{{item.1.device | default({})}}" network="{{item.1.network | default({})}}" mode="{{item.1.mode | default({})}}" ssid="{{item.1.ssid | default({})}}" encryption="{{item.1.encryption | default({})}}" key="{{item.1.key | default({})}}" macfilter="{{item.1.macfilter | default({})}}" maclist="{{item.1.maclist | default({})}}"
   with_indexed_items: "{{wifi_ifaces}}"
   notify:
     - uci commit wireless

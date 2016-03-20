@@ -58,3 +58,23 @@
     option: "key"
     value: "{{key}}"
   when: key != {}
+
+- name: set wifi-iface macfilter
+  uci:
+    command: set_list_object_value
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "macfilter"
+    value: "{{macfilter}}"
+  when: macfilter != {}
+
+- name: set wifi-iface maclist
+  uci:
+    command: set_list_object_value_as_list
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "maclist"
+    value: "{{maclist}}"
+  when: maclist != {}
