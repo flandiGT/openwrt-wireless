@@ -20,7 +20,7 @@
     network: "{{item.1.network | default({})}}"
     mode: "{{item.1.mode | default({})}}"
     ssid: "{{item.1.ssid | default({})}}"
-    encryption: "{{item.1.encryption | default({})}}"
+    encryption: "{{item.1.encryption | default('none')}}"
     key: "{{item.1.key | default({})}}"
     macfilter: "{{item.1.macfilter | default({})}}"
     maclist: "{{item.1.maclist | default({})}}"

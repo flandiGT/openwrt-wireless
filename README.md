@@ -54,7 +54,7 @@ wifi-iface attributes:
 | macfilter      | option as text      | * disable = no macfilter active                                                 |
 |                |                     | * allow = Allow listed only                                                     |
 |                |                     | * deny = Allow all except listed                                                |
-| maclist        | list of text values | mac addresses to allow or deny / "XX:XX:XX:XX:XX:XX,XX:XX:XX:XX:XX:XX"         |
+| maclist        | list of text values | mac addresses to allow or deny / "XX:XX:XX:XX:XX:XX,XX:XX:XX:XX:XX:XX"          |
 
 Dependencies
 ------------
