@@ -1,7 +1,7 @@
 ---
 - name: set wifi-iface device
   uci:
-    command: set_list_object_value
+    command: set
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -11,7 +11,7 @@
 
 - name: set wifi-iface network
   uci:
-    command: set_list_object_value
+    command: set
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -21,7 +21,7 @@
 
 - name: set wifi-iface mode
   uci:
-    command: set_list_object_value
+    command: set
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -31,7 +31,7 @@
 
 - name: set wifi-iface ssid
   uci:
-    command: set_list_object_value
+    command: set
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -41,7 +41,7 @@
 
 - name: set wifi-iface encryption
   uci:
-    command: set_list_object_value
+    command: set
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -51,7 +51,7 @@
 
 - name: set wifi-iface key
   uci:
-    command: set_list_object_value
+    command: set
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -61,7 +61,7 @@
 
 - name: remove wifi-iface key
   uci:
-    command: delete_list_object_value
+    command: delete
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -70,7 +70,7 @@
 
 - name: set wifi-iface macfilter
   uci:
-    command: set_list_object_value
+    command: set
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -80,7 +80,7 @@
 
 - name: remove wifi-iface macfilter
   uci:
-    command: delete_list_object_value
+    command: delete
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -89,7 +89,7 @@
 
 - name: set wifi-iface maclist
   uci:
-    command: set_list_object_value_as_list
+    command: set_list
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
@@ -99,7 +99,7 @@
 
 - name: remove wifi-iface maclist
   uci:
-    command: delete_list_object_value
+    command: delete
     index: "{{index}}"
     config: "wireless"
     type: "wifi-iface"
