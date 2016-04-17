@@ -8,7 +8,7 @@
     value: "{{ (not enabled) | int }}"
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-device channel
   uci:
@@ -20,7 +20,7 @@
   when: channel != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: remove wifi-device channel
   uci:
@@ -31,7 +31,7 @@
   when: channel == {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-device txpower
   uci:
@@ -43,7 +43,7 @@
   when: txpower != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: remove wifi-device txpower
   uci:
@@ -54,7 +54,7 @@
   when: txpower == {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-device country
   uci:
@@ -66,7 +66,7 @@
   when: country != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: delete wifi-device country
   uci:
@@ -77,4 +77,4 @@
   when: country == {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless

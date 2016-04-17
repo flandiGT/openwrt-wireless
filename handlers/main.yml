@@ -2,5 +2,5 @@
 - name: uci commit wireless
   uci: command=commit config=wireless
 
-- name: reload network
+- name: reload network for openwrt-wireless
   raw: /etc/init.d/network reload

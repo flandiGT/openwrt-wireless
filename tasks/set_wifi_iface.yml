@@ -10,7 +10,7 @@
   when: device != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-iface network
   uci:
@@ -23,7 +23,7 @@
   when: network != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-iface mode
   uci:
@@ -36,7 +36,7 @@
   when: mode != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-iface ssid
   uci:
@@ -49,7 +49,7 @@
   when: ssid != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-iface encryption
   uci:
@@ -62,7 +62,7 @@
   when: encryption != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-iface key
   uci:
@@ -75,7 +75,7 @@
   when: key != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: remove wifi-iface key
   uci:
@@ -87,7 +87,7 @@
   when: key == {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-iface macfilter
   uci:
@@ -100,7 +100,7 @@
   when: macfilter != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: remove wifi-iface macfilter
   uci:
@@ -112,7 +112,7 @@
   when: macfilter == {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: set wifi-iface maclist
   uci:
@@ -125,7 +125,7 @@
   when: maclist != {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
 
 - name: remove wifi-iface maclist
   uci:
@@ -137,4 +137,4 @@
   when: maclist == {}
   notify:
     - uci commit wireless
-    - reload network
+    - reload network for openwrt-wireless
