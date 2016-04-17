@@ -8,6 +8,9 @@
     option: "device"
     value: "{{device}}"
   when: device != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-iface network
   uci:
@@ -18,6 +21,9 @@
     option: "network"
     value: "{{network}}"
   when: network != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-iface mode
   uci:
@@ -28,6 +34,9 @@
     option: "mode"
     value: "{{mode}}"
   when: mode != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-iface ssid
   uci:
@@ -38,6 +47,9 @@
     option: "ssid"
     value: "{{ssid}}"
   when: ssid != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-iface encryption
   uci:
@@ -48,6 +60,9 @@
     option: "encryption"
     value: "{{encryption}}"
   when: encryption != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-iface key
   uci:
@@ -58,6 +73,9 @@
     option: "key"
     value: "{{key}}"
   when: key != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: remove wifi-iface key
   uci:
@@ -67,6 +85,9 @@
     type: "wifi-iface"
     option: "key"
   when: key == {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-iface macfilter
   uci:
@@ -77,6 +98,9 @@
     option: "macfilter"
     value: "{{macfilter}}"
   when: macfilter != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: remove wifi-iface macfilter
   uci:
@@ -86,6 +110,9 @@
     type: "wifi-iface"
     option: "macfilter"
   when: macfilter == {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-iface maclist
   uci:
@@ -96,6 +123,9 @@
     option: "maclist"
     value: "{{maclist}}"
   when: maclist != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: remove wifi-iface maclist
   uci:
@@ -105,3 +135,6 @@
     type: "wifi-iface"
     option: "maclist"
   when: maclist == {}
+  notify:
+    - uci commit wireless
+    - reload network

@@ -6,6 +6,9 @@
     section: "{{name}}"
     option: "disabled"
     value: "{{ (not enabled) | int }}"
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-device channel
   uci:
@@ -15,6 +18,9 @@
     option: "channel"
     value: "{{channel}}"
   when: channel != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: remove wifi-device channel
   uci:
@@ -23,6 +29,9 @@
     section: "{{name}}"
     option: "channel"
   when: channel == {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-device txpower
   uci:
@@ -32,6 +41,9 @@
     option: "txpower"
     value: "{{txpower}}"
   when: txpower != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: remove wifi-device txpower
   uci:
@@ -40,6 +52,9 @@
     section: "{{name}}"
     option: "txpower"
   when: txpower == {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: set wifi-device country
   uci:
@@ -49,6 +64,9 @@
     option: "country"
     value: "{{country}}"
   when: country != {}
+  notify:
+    - uci commit wireless
+    - reload network
 
 - name: delete wifi-device country
   uci:
@@ -57,3 +75,6 @@
     section: "{{name}}"
     option: "country"
   when: country == {}
+  notify:
+    - uci commit wireless
+    - reload network

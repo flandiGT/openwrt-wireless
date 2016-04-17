@@ -8,9 +8,6 @@
     txpower: "{{item.txpower | default({})}}"
     country: "{{item.country | default({})}}"
   with_items: "{{wifi_devices}}"
-  notify:
-    - uci commit wireless
-    - reload network
 
 - name: set wifi-ifaces
   include: set_wifi_iface.yml
@@ -25,6 +22,3 @@
     macfilter: "{{item.1.macfilter | default({})}}"
     maclist: "{{item.1.maclist | default([]) | join(',') }}"
   with_indexed_items: "{{wifi_ifaces}}"
-  notify:
-    - uci commit wireless
-    - reload network
