@@ -54,7 +54,7 @@ wifi-iface attributes:
 | macfilter      | option as text      | * disable = no macfilter active                                                 |
 |                |                     | * allow = Allow listed only                                                     |
 |                |                     | * deny = Allow all except listed                                                |
-| maclist        | list of text values | mac addresses to allow or deny / "XX:XX:XX:XX:XX:XX,XX:XX:XX:XX:XX:XX"          |
+| maclist        | array of strings    | mac addresses to allow or deny / ["XX:XX:XX:XX:XX:XX","XX:XX:XX:XX:XX:XX"]      |
 
 Dependencies
 ------------
@@ -85,7 +85,10 @@ Example Playbook
     encryption: psk2+ccmp,
     key: my_ultra_secret_key,
     macfilter: allow,
-    maclist: "01:23:45:67:89:AB,FE:DC:BA:98:76:54"
+    maclist: [
+      '01:23:45:67:89:AB',
+      'FE:DC:BA:98:76:54'
+    ]
   }, {
     device: radio1,
     mode: ap,
