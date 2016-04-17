@@ -23,7 +23,7 @@
     encryption: "{{item.1.encryption | default('none')}}"
     key: "{{item.1.key | default({})}}"
     macfilter: "{{item.1.macfilter | default({})}}"
-    maclist: "{{item.1.maclist | default({})}}"
+    maclist: "{{item.1.maclist | default([]) | join(',') }}"
   with_indexed_items: "{{wifi_ifaces}}"
   notify:
     - uci commit wireless
