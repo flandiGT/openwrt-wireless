@@ -21,4 +21,5 @@
     key: "{{item.1.key | default({})}}"
     macfilter: "{{item.1.macfilter | default({})}}"
     maclist: "{{item.1.maclist | default([]) | join(',') }}"
+    isolate: "{{item.1.isolate | default({})}}"
   with_indexed_items: "{{wifi_ifaces}}"

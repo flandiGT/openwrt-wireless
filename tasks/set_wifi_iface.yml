@@ -138,3 +138,16 @@
   notify:
     - uci commit wireless
     - reload network for openwrt-wireless
+
+- name: set wifi-iface isolate
+  uci:
+    command: set
+    index: "{{index}}"
+    config: "wireless"
+    type: "wifi-iface"
+    option: "isolate"
+    value: "{{ (isolate) | int }}"
+  when: isolate != {}
+  notify:
+    - uci commit wireless
+    - reload network for openwrt-wireless
