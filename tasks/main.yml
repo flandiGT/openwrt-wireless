@@ -12,7 +12,7 @@
 - name: set wifi-ifaces
   include: set_wifi_iface.yml
   vars:
-    index: "{{item.0}}"
+    index: "{{item.1.index | default(item.0)}}"
     device: "{{item.1.device | default({})}}"
     network: "{{item.1.network | default({})}}"
     mode: "{{item.1.mode | default({})}}"

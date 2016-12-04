@@ -29,6 +29,7 @@ wifi-iface attributes:
 
 | attribute name | property type       | valid values / examples                                                         |
 |----------------|---------------------|---------------------------------------------------------------------------------|
+| index          | number              | optional: index of the wifi-iface                                               |
 | mode           | option as text      | * ap = Access point                                                             |
 |                |                     | * sta = Client                                                                  |
 |                |                     | * mesh = 802.11s                                                                |
