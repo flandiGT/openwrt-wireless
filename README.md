@@ -4,13 +4,18 @@ openwrt-wireless
 configure wireless aspects of your openwrt system.
 compare: [http://wiki.openwrt.org/doc/uci/wireless]
 
+Dependencies
+------------
+
+* [openwrt-uci](https://github.com/flandiGT/openwrt-uci)
+
 Role Variables
 --------------
 
-| variable name     | type             | element structure                                                                                        | default |
-|-------------------|------------------|----------------------------------------------------------------------------------------------------------|---------|
-| wifi-devices      | array of objects | {name: {{device_name}}, enabled: {{is_device_enabled}}}                                                  | <empty> |
-| wifi-ifaces       | array of objects | {mode: {{iface_mode}}, ssid: {{iface_ssid}}, encryption: {{iface_encryption}}, device: {{iface_device}}} | <empty> |
+| variable name     | type             | default | element structure       |
+|-------------------|------------------|---------|-------------------------|
+| wifi-devices      | array of objects | []      | see documentation below |
+| wifi-ifaces       | array of objects | []      | see documentation below |
 
 Role Variable elements
 ----------------------
@@ -30,73 +35,49 @@ wifi-iface attributes:
 | attribute name | property type       | valid values / examples                                                         |
 |----------------|---------------------|---------------------------------------------------------------------------------|
 | index          | number              | optional: index of the wifi-iface                                               |
-| mode           | option as text      | * ap = Access point                                                             |
-|                |                     | * sta = Client                                                                  |
-|                |                     | * mesh = 802.11s                                                                |
-|                |                     | * ahdemo = Pseudo Ad-Hoc                                                        |
-|                |                     | * monitor = Monitor                                                             |
+| mode           | option as text      | (see official documentation)                                                    |
 | ssid           | text                | "mySSID", "OpenWRT" (any non-empty text )                                       |
-| encryption     | option as text      | * none = No Encryption                                                          |
-|                |                     | * wep-open = WEP Open System                                                    |
-|                |                     | * wep-shared = WEP Shared Key                                                   |
-|                |                     | * psk = WPA-PSK / Auto cipher                                                   |
-|                |                     | * psk+tkip = WPA-PSK / Force TKIP                                               |
-|                |                     | * psk+ccmp = WPA-PSK / Force CCMP (AES)                                         |
-|                |                     | * psk+tkip+ccmp = WPA-PSK / Force TKIP and CCMP (AES)                           |
-|                |                     | * psk2 = WPA2-PSK / Auto cipher                                                 |
-|                |                     | * psk2+tkip = WPA2-PSK / Force TKIP                                             |
-|                |                     | * psk2+ccmp = WPA2-PSK / Force CCMP (AES)                                       |
-|                |                     | * psk2+tkip+ccmp = WPA2-PSK / Force TKIP and CCMP (AES)                         |
-|                |                     | * psk-mixed = WPA-PSK/WPA2-PSK Mixed Mode                                       |
-|                |                     | * psk-mixed+tkip = WPA-PSK/WPA2-PSK Mixed Mode / Force TKIP                     |
-|                |                     | * psk-mixed+ccmp = WPA-PSK/WPA2-PSK Mixed Mode / Force CCMP (AES)               |
-|                |                     | * psk-mixed+tkip+ccmp = WPA-PSK/WPA2-PSK Mixed Mode / Force TKIP and CCMP (AES) |
+| encryption     | option as text      | (see official documentation)                                                    |
 | device         | reference as text   | reference to wifi-device's name ("radio0, "radio1")                             |
-| macfilter      | option as text      | * disable = no macfilter active                                                 |
-|                |                     | * allow = Allow listed only                                                     |
-|                |                     | * deny = Allow all except listed                                                |
+| macfilter      | option as text      | disable / allow / deny                                                          |
 | maclist        | array of strings    | mac addresses to allow or deny / ["XX:XX:XX:XX:XX:XX","XX:XX:XX:XX:XX:XX"]      |
-
-Dependencies
-------------
-
-* openwrt-uci
 
 Example Playbook
 ----------------
 
 ```
 - role: openwrt-wireless
-  wifi_devices: [{
-    name: radio0,
-    channel: 36,
-    txpower: 17,
-    country: DE,
-    enabled: true
-  }, {
-    name: radio1,
-    enabled: false
-  }]
-
-- role: openwrt-wireless
-  wifi_ifaces: [{
-    device: radio0,
-    mode: ap,
-    ssid: OpenWrt,
-    encryption: psk2+ccmp,
-    key: my_ultra_secret_key,
-    macfilter: allow,
-    maclist: [
-      '01:23:45:67:89:AB',
-      'FE:DC:BA:98:76:54'
-    ]
-  }, {
-    device: radio1,
-    mode: ap,
-    ssid: OpenWrt,
+  wifi_devices:
+    - name: radio0
+      channel: 36
+      txpower: 17
+      country: DE
+      enabled: true
+    - name: radio1
+      enabled: true
+  wifi_ifaces:
+  - device: radio0
+    mode: ap
+    ssid: OpenWrt_secured
+    encryption: psk2+ccmp
+    key: my_ultra_secret_key
+    network: lan
+  - device: radio1
+    mode: ap
+    ssid: OpenWrt_open
     encryption: none
-  }]
+  - device: radio0
+    mode: ap
+    ssid: OpenWrt_with_macfilter
+    encryption: none
+    macfilter: allow
+    maclist:
+    - '01:23:45:67:89:AB'
+    - 'FE:DC:BA:98:76:54'
 ```
 
-[http://wiki.openwrt.org/doc/uci/wireless]: http://wiki.openwrt.org/doc/uci/wireless
-[https://github.com/lefant/ansible-openwrt-wireless]: https://github.com/lefant/ansible-openwrt-wireless
+Official documentation:
+* [OpenWRT Wiki / Wireless configuration](http://wiki.openwrt.org/doc/uci/wireless)
+
+Got idea from:
+* [lefant/ansible-openwrt-wireless](https://github.com/lefant/ansible-openwrt-wireless)
