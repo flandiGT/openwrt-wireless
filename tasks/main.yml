@@ -9,6 +9,7 @@
       disabled: "{{ (not item.enabled) | int }}"
       channel: "{{ item.channel | default(None) }}"
       txpower: "{{ item.txpower | default(None) }}"
+      htmode: "{{ item.htmode | default(None) }}"
   with_items: "{{ wifi_devices }}"
   notify:
     - uci commit wireless
